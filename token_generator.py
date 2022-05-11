@@ -26,15 +26,18 @@ class Lexer(object):
               'LEFTBRACE',
               'DIGITO',
               'LETRA',
-              'CHARESPECIAL'
+              'CHARESPECIAL',
+              'INTCONSTANT',
+              'STRINGCONSTANT',
+              'FLOATCONSTANT'
               ]
 
     #regular expression
     t_PLUS = r'\+'
     t_MINUS = r'-'
     t_TIMES = r'\*'
-    t_DIVIDE = r'/'
-    t_MOD = r'%'
+    # t_DIVIDE = r'/'
+    # t_MOD = r'%'
     t_ASSIGN = r'='
     t_LT = r'<'
     t_GT = r'>'
@@ -54,6 +57,9 @@ class Lexer(object):
     t_CHARESPECIAL = r'[^a-zA-Z0-9]'
     t_DIGITO = r'([0-9])'
     t_LETRA = r'([A-Za-z])'
+    # Ignores spaces
+    t_ignore = ' \t'
+
 
     #reserved words
     reserved = {
@@ -74,8 +80,6 @@ class Lexer(object):
 
     tokens = tokens + list(reserved.values())
 
-    # Ignores spaces
-    t_IGNORE = ' \t'
 
     # LINEBREAK
     def t_LINEBREAK(self, t):
@@ -107,7 +111,7 @@ class Lexer(object):
         return t
 
     # ERROR
-    def t_ERROR(t):
+    def t_error(self, t):
         column = self.find_column(input, t)
         print("-----------------------------------------")
         print("ERRO LÉXICO")
