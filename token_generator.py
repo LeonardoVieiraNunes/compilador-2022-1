@@ -1,12 +1,13 @@
 import ply.lex as lex
 import ply.yacc as yacc
 
+
 class Lexer(object):
     # tokens list
     tokens = ['PLUS',
               'MINUS',
               'TIMES',
-              'DIVIDE'
+              'DIVIDE',
               'MOD',
               'ASSIGN',
               'LT',
@@ -26,18 +27,19 @@ class Lexer(object):
               'LEFTBRACE',
               'DIGITO',
               'LETRA',
-              'CHARESPECIAL',
+              # 'CHARESPECIAL',
               'INTCONSTANT',
               'STRINGCONSTANT',
-              'FLOATCONSTANT'
+              'FLOATCONSTANT',
+              'IDENT'
               ]
 
     #regular expression
     t_PLUS = r'\+'
     t_MINUS = r'-'
     t_TIMES = r'\*'
-    # t_DIVIDE = r'/'
-    # t_MOD = r'%'
+    t_DIVIDE = r'/'
+    t_MOD = r'%'
     t_ASSIGN = r'='
     t_LT = r'<'
     t_GT = r'>'
@@ -54,7 +56,7 @@ class Lexer(object):
     t_LEFTBRACKET = r'\['
     t_RIGHTBRACE = r'}'
     t_LEFTBRACE = r'{'
-    t_CHARESPECIAL = r'[^a-zA-Z0-9]'
+    # t_CHARESPECIAL = r'[^a-zA-Z0-9]'
     t_DIGITO = r'([0-9])'
     t_LETRA = r'([A-Za-z])'
     # Ignores spaces
@@ -79,7 +81,6 @@ class Lexer(object):
                 }
 
     tokens = tokens + list(reserved.values())
-
 
     # LINEBREAK
     def t_LINEBREAK(self, t):
@@ -112,7 +113,7 @@ class Lexer(object):
 
     # ERROR
     def t_error(self, t):
-        column = self.find_column(input, t)
+        column = self.find_column(t)
         print("-----------------------------------------")
         print("ERRO LÉXICO")
         print("Caracter: '%s'" % t.value[0])
@@ -121,7 +122,12 @@ class Lexer(object):
         print("-----------------------------------------")
         t.lexer.skip(1)
 
-    def find_column(self, input, token):
+    # def find_column(self, input, token):
+    #     line_start = input.rfind('\n', 0, token.lexpos) + 1
+    #     return (token.lexpos - line_start) + 1
+
+    def find_column(self, token):
+        input = self.lexer.lexdata
         line_start = input.rfind('\n', 0, token.lexpos) + 1
         return (token.lexpos - line_start) + 1
 
