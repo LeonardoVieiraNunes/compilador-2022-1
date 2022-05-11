@@ -1,12 +1,13 @@
 import ply.lex as lex
 import ply.yacc as yacc
 
+
 class Lexer(object):
     # tokens list
     tokens = ['PLUS',
               'MINUS',
               'TIMES',
-              'DIVIDE'
+              'DIVIDE',
               'MOD',
               'ASSIGN',
               'LT',
@@ -26,7 +27,10 @@ class Lexer(object):
               'LEFTBRACE',
               'DIGITO',
               'LETRA',
-              'CHARESPECIAL'
+              'CHARESPECIAL',
+              'INTCONSTANT',
+              'STRINGCONSTANT',
+              'FLOATCONSTANT'
               ]
 
     #regular expression
@@ -75,7 +79,7 @@ class Lexer(object):
     tokens = tokens + list(reserved.values())
 
     # Ignores spaces
-    t_IGNORE = ' \t'
+    t_ignore = ' \t'
 
     # LINEBREAK
     def t_LINEBREAK(self, t):
@@ -107,7 +111,7 @@ class Lexer(object):
         return t
 
     # ERROR
-    def t_ERROR(t):
+    def t_error(self, t):
         column = self.find_column(input, t)
         print("-----------------------------------------")
         print("ERRO LÉXICO")
