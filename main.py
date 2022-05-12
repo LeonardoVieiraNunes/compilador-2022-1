@@ -1,3 +1,9 @@
+#INE5426 - Construção de Compiladores - Analisador Léxico
+# Artur Ribeiro Alfa [17103919]
+# Augusto Vieira Coelho Rodrigues [19100517]
+# Leonardo Vieira Nunes [19102923]
+# Thainan Vieira Junckes [19100545]
+
 import ply.lex as lex
 import ply.yacc as yacc
 from token_generator import *

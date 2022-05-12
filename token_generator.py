@@ -1,3 +1,9 @@
+#INE5426 - Construção de Compiladores - Analisador Léxico
+# Artur Ribeiro Alfa [17103919]
+# Augusto Vieira Coelho Rodrigues [19100517]
+# Leonardo Vieira Nunes [19102923]
+# Thainan Vieira Junckes [19100545]
+
 import ply.lex as lex
 import ply.yacc as yacc
 
@@ -27,7 +33,6 @@ class Lexer(object):
               'LEFTBRACE',
               'DIGITO',
               'LETRA',
-              # 'CHARESPECIAL',
               'INTCONSTANT',
               'STRINGCONSTANT',
               'FLOATCONSTANT',
@@ -56,9 +61,9 @@ class Lexer(object):
     t_LEFTBRACKET = r'\['
     t_RIGHTBRACE = r'}'
     t_LEFTBRACE = r'{'
-    # t_CHARESPECIAL = r'[^a-zA-Z0-9]'
     t_DIGITO = r'([0-9])'
     t_LETRA = r'([A-Za-z])'
+
     # Ignores spaces
     t_ignore = ' \t'
 
@@ -121,10 +126,6 @@ class Lexer(object):
         print("Coluna: %s" % column)
         print("-----------------------------------------")
         t.lexer.skip(1)
-
-    # def find_column(self, input, token):
-    #     line_start = input.rfind('\n', 0, token.lexpos) + 1
-    #     return (token.lexpos - line_start) + 1
 
     def find_column(self, token):
         input = self.lexer.lexdata
