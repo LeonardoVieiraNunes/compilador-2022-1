@@ -127,21 +127,26 @@ class Lexer(object):
         print("-----------------------------------------")
         t.lexer.skip(1)
 
+    # pega a coluna do token
     def find_column(self, token):
         input = self.lexer.lexdata
         line_start = input.rfind('\n', 0, token.lexpos) + 1
         return (token.lexpos - line_start) + 1
 
+    #constroi o AL
     def build(self, **kwargs):
         self.lexer = lex.lex(module=self, **kwargs)
 
+    #passa uma entrada pro AL
     def input(self, code: str, **kwargs):
         self._input = code
         self.lexer.input(code, **kwargs)
 
+    #pega as info do token
     def token(self):
         return self.lexer.token()
 
+    #funcao para testes dos tokens
     def test(self, data):
         self.lexer.input(data)
         while True:

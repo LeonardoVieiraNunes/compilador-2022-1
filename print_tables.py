@@ -6,27 +6,21 @@
 
 from prettytable import PrettyTable
 
+#print da tabela de tokens
 def print_tokens_table(tokens_table):
     print("========= TABELA DE TOKENS =========")
     t = PrettyTable(['TOKEN', 'VALOR', 'LINHA', 'COLUNA'])
-    for entrie in tokens_table:
-        t.add_row([entrie['token'], entrie['valor'],entrie['linha'], entrie['coluna']])
+    for tt in tokens_table:
+        t.add_row([tt['token'], tt['valor'],tt['linha'], tt['coluna']])
     print(t)
     print()
 
-
-# def print_token_list(tokens_list):
-#     print("========= Tokens List =========")
-#     for tok in tokens_list:
-#         print(tok)
-#     print()
-#
-
+#print da tabela de simbolos
 def print_symbols_table(symbols_table):
     print("========= TABELA DE SÍMBOLOS =========")
     t = PrettyTable(['NOME', 'TIPO', 'DECLARAÇÃO (linha)', 'REFERENCIADO (linha)'])
     for key in symbols_table:
-        symbol = symbols_table[key]
-        t.add_row([symbol['nome'], symbol['tipo'],symbol['declaracao'], symbol['referenciacao']])
+        ss = symbols_table[key]
+        t.add_row([ss['nome'], ss['tipo'],ss['declaracao'], ss['referenciacao']])
     print(t)
     print()
