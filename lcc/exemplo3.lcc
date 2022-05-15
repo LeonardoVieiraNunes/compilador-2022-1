@@ -1,0 +1,106 @@
+def media()
+{
+  int resultado = 0;
+  int SM[20];
+  SM[0] = 5;
+  SM[1] = 5;
+  SM[2] = 5;
+  SM[3] = 5;
+  SM[4] = 5;
+  SM[5] = 5;
+  SM[6] = 5;
+  SM[7] = 5;
+  SM[8] = 5;
+  SM[9] = 5;
+  SM[10] = 5;
+  SM[11] = 5;
+  SM[12] = 5;
+  SM[13] = 5;
+  SM[14] = 5;
+  SM[15] = 5;
+  SM[16] = 5;
+  SM[17] = 5;
+  SM[18] = 5;
+  SM[19] = 5;
+
+  for(int i = 0; i < 19; i = i + 1)
+  {
+    resultado = resultado + SM[i];
+  }
+  
+  print(resultado);
+}
+
+def myComplexPrint(string s1, string s2, string s3)
+{
+  string v1;
+  v1 = s1;
+  string v2;
+  v2 = s2;
+  string v3;
+  v3 = s3;
+
+  print(v1);
+  print(v2);
+  print(v3);
+  media();
+}
+
+def myCase(int variable)
+{
+  if(variable == 0)
+  {
+    print(0);
+  }
+  if(variable == 1)
+  {
+    print(1);
+  }
+  if(variable == 2)
+  {
+    print(1);
+  }
+  if(variable == 3)
+  {
+    print(1);
+  }
+  if(variable == 4)
+  {
+    print(1);
+  }
+  if(variable == 5)
+  {
+    print(1);
+  }
+  if(variable == 6)
+  {
+    print(1);
+  }
+  if(variable == 7)
+  {
+    print(1);
+  }
+  if(variable == 8)
+  {
+    print(1);
+  }
+}
+
+def currentHP(string playerName, int playerCode)
+{
+  int playerList[1];
+  playerList[0] = 20;
+  print("The HP of player ");
+  print(playerName);
+  print(" with the player code ");
+  print(playerCode);
+  print("is the following value ");
+  print(playerList[0]);
+  if(playerList[0] == 20)
+  {
+    print("The player is full health");
+  }
+  else {
+    print("The player is not full health");
+  }
+}
