@@ -38,3 +38,49 @@
   return;
 }
 }
+
+def acordarOuDormir()
+{
+  string resposta;
+  print "Está chovendo?";
+  read resposta;
+  if(resposta == "sim")
+  {
+    print "Zzzz";
+  }
+  else {
+    print "Booora!";
+  }
+}
+
+def testandoFor1()
+{
+  for(int i = 0; i < 10; i = i + 1)
+  {
+    print("próximo número é:");
+    print i;
+  }
+}
+
+def testandoFor2()
+{
+  
+  for(int i = 0; i < 10; i = i + 1)
+  {
+    for(int i = 0; i < 10; i = i + 1)
+    {
+      
+    }
+  }
+}
+
+def principal()
+{
+  int C;
+  int D;
+  int R;
+  C = 4;
+  D = 5;
+  R = func1(C, D);
+  return;
+}
