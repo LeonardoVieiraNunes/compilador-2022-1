@@ -33,7 +33,10 @@ def p_funclist(p):
     '''
     FUNCLIST : FUNCDEF FUNCLIST2
     '''
-    p[0] = ' '.join(p[1:])
+    if p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_funclist2(p):
     '''
@@ -43,10 +46,14 @@ def p_funclist2(p):
     p[0] = p[1]
 
 def p_funcdef(p):
+    '''
+    FUNCDEF : DEF IDENT LEFTPARENTHESES PARAMLIST RIGHTPARENTHESES  LEFTBRACE STATELIST RIGHTBRACE
 	'''
-	FUNCDEF : DEF IDENT LEFTPARENTHESES PARAMLIST RIGHTPARENTHESES  '{' STATELIST '}'
-	'''
-	p[0] = ' '.join(p[1:])
+    if p[4]==None:
+        statelist = ''.join(p[7])
+        p[0] = p[1]+p[2]+p[3]+p[5]+p[6]+statelist+p[8]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_paramlist(p):
     '''
@@ -55,14 +62,20 @@ def p_paramlist(p):
                 | STRING PARAMLIST2 
                 | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 # PARAMLIST' (linha) no relatório
 def p_paramlist2(p):
     '''
     PARAMLIST2 : IDENT PARAMLIST3
     '''
-    p[0] = ' '.join(p[1:])
+    if p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 # PARAMLIST2 no relatorio
 def p_paramlist3(p):
@@ -70,7 +83,10 @@ def p_paramlist3(p):
     PARAMLIST3 : COMMA PARAMLIST
                 | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None:
+        p[0]=p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_statement(p):
     '''
@@ -81,7 +97,7 @@ def p_statement(p):
                 | RETURNSTAT SEMICOLON
                 | IFSTAT SEMICOLON
                 | FORSTAT SEMICOLON
-                | '{' STATELIST '}'
+                | LEFTBRACE STATELIST RIGHTBRACE
                 | BREAK SEMICOLON
                 | SEMICOLON
     '''
@@ -103,7 +119,7 @@ def p_vardecl2(p):
     VARDECL2 : IDENT VARDECL3
     '''
     if p[2] == None:
-        p[0] = '' + p[1]
+        p[0] = p[1]
     else:
         p[0] = ' '.join(p[1:])
 
@@ -138,21 +154,30 @@ def p_funccall(p):
     '''
     FUNCCALL : IDENT LEFTPARENTHESES PARAMLISTCALL RIGHTPARENTHESES
     '''
-    p[0] = ' '.join(p[1:])
+    if p[3]==None:
+        p[0] = p[1]+p[2]+p[4]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_paramlistcall(p):
     '''
     PARAMLISTCALL : IDENT PARAMLISTCALL2 
                     | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None or p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_paramlistcall2(p):
     '''
     PARAMLISTCALL2 : COMMA PARAMLISTCALL 
                     | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None or p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_printstat(p):
     '''
@@ -176,14 +201,20 @@ def p_ifstat(p):
     '''
     IFSTAT : IF LEFTPARENTHESES EXPRESSION RIGHTPARENTHESES STATEMENT ELSESTAT
     '''
-    p[0] = ' '.join(p[1:])
+    if p[6]==None:
+        p[0] = ' '.join(p[1:6])
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_elsestat(p):
     '''
     ELSESTAT : ELSE STATEMENT 
                 | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_forstat(p):
     '''
@@ -195,7 +226,10 @@ def p_statelist(p):
     '''
     STATELIST : STATEMENT STATELIST2
     '''
-    p[0] = ' '.join(p[1:])
+    if p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 
 def p_statelist2(p):
@@ -225,7 +259,10 @@ def p_allocexpression_opt(p):
     '''
     ALLOCEXPRESSION_OPT : LEFTBRACKET NUMEXPRESSION RIGHTBRACKET ALLOCEXPRESSION3
     '''
-    p[0] = ' '.join(p[1:])
+    if p[4]==None:
+        p[0] = ' '.join(p[1:4])
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_allocexpression3(p):
     '''
@@ -255,7 +292,10 @@ def p_numexpression(p):
     '''
     NUMEXPRESSION : TERM NUMEXPRESSION2
     '''
-    p[0] = ' '.join(p[1:])
+    if p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_numexpression2(p):
     '''
@@ -263,54 +303,78 @@ def p_numexpression2(p):
                     | MINUS TERM NUMEXPRESSION 
                     | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if len(p)==2:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_term(p):
     '''
     TERM : UNARYEXPR UNARYEXPR2
     '''
-    p[0] = ' '.join(p[1:])
+    if p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_unaryexpression2(p):
     '''
-    UNARYEXPR2 : TIMES UNARYEXPR2 
-                | DIVIDE UNARYEXPR2 
-                | MOD UNARYEXPR2 
+    UNARYEXPR2 : TIMES UNARYEXPR2
+                | DIVIDE UNARYEXPR2
+                | MOD UNARYEXPR2
                 | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None:
+        p[0] = p[1]
+    else:
+        if p[2]==None:
+            p[0] = p[1]
+        else:
+            p[0] = ' '.join(p[1:])
 
 def p_unaryexpression(p):
     '''
-    UNARYEXPR : PLUS FACTOR 
-                | MINUS FACTOR 
+    UNARYEXPR : PLUS FACTOR
+                | MINUS FACTOR
                 | FACTOR
     '''
     p[0] = ' '.join(p[1:])
 
 def p_factor(p):
     '''
-    FACTOR : INTCONSTANT 
-            | FLOATCONSTANT 
-            | STRINGCONSTANT 
-            | NULL 
-            | LVALUE 
+    FACTOR : INTCONSTANT
+            | FLOATCONSTANT
+            | STRINGCONSTANT
+            | NULL
+            | LVALUE
             | LEFTPARENTHESES NUMEXPRESSION RIGHTPARENTHESES
     '''
-    p[0] = ' '.join(p[1:])
+    if len(p)==2:
+        p[0] = str(p[1])
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_lvalue(p):
     '''
     LVALUE : IDENT LVALUE2
     '''
-    p[0] = ' '.join(p[1:])
+    if p[2]==None:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_lvalue2(p):
     '''
-    LVALUE2 : LEFTBRACKET NUMEXPRESSION RIGHTBRACKET LVALUE2 
+    LVALUE2 : LEFTBRACKET NUMEXPRESSION RIGHTBRACKET LVALUE2
             | empty
     '''
-    p[0] = ' '.join(p[1:])
+    if p[1]==None:
+        p[0] = p[1]
+    else:
+        if p[4]==None:
+            p[0] = ' '.join(p[1:4])
+        else:
+            p[0] = ' '.join(p[1:])
 
 # Erro
 def p_error(p):
