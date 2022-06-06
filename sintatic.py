@@ -8,6 +8,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 from token_generator import *
 import sys
+import logging
 
 tokens = Lexer.tokens
 
@@ -26,26 +27,26 @@ def p_program_statement(p):
                 | FUNCLIST
                 | empty
     '''
-    pass
+    p[0] = p[1]
 
 def p_funclist(p):
     '''
     FUNCLIST : FUNCDEF FUNCLIST2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_funclist2(p):
     '''
     FUNCLIST2 : FUNCLIST 
                 | empty
     '''
-    pass
+    p[0] = p[1]
 
 def p_funcdef(p):
 	'''
-	FUNCDEF : DEF IDENT '(' PARAMLIST ')'  '{' STATELIST '}'
+	FUNCDEF : DEF IDENT LEFTPARENTHESES PARAMLIST RIGHTPARENTHESES  '{' STATELIST '}'
 	'''
-	pass
+	p[0] = ' '.join(p[1:])
 
 def p_paramlist(p):
     '''
@@ -54,37 +55,40 @@ def p_paramlist(p):
                 | STRING PARAMLIST2 
                 | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 # PARAMLIST' (linha) no relatório
 def p_paramlist2(p):
     '''
     PARAMLIST2 : IDENT PARAMLIST3
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 # PARAMLIST2 no relatorio
 def p_paramlist3(p):
     '''
-    PARAMLIST3 : ',' PARAMLIST
+    PARAMLIST3 : COMMA PARAMLIST
                 | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_statement(p):
     '''
-    STATEMENT : VARDECL ';' 
-                | ATRIBSTAT ';' 
-                | PRINTSTAT ';' 
-                | READSTAT ';' 
-                | RETURNSTAT ';'
-                | IFSTAT ';'
-                | FORSTAT ';'
+    STATEMENT : VARDECL SEMICOLON 
+                | ATRIBSTAT SEMICOLON 
+                | PRINTSTAT SEMICOLON 
+                | READSTAT SEMICOLON 
+                | RETURNSTAT SEMICOLON
+                | IFSTAT SEMICOLON
+                | FORSTAT SEMICOLON
                 | '{' STATELIST '}'
-                | BREAK ';'
-                | ';'
+                | BREAK SEMICOLON
+                | SEMICOLON
     '''
-    pass
+    if len(p) == 2:
+        p[0] = p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_vardecl(p):
     '''
@@ -92,26 +96,35 @@ def p_vardecl(p):
             | FLOAT VARDECL2 
             | STRING VARDECL2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_vardecl2(p):
     '''
     VARDECL2 : IDENT VARDECL3
     '''
-    pass
+    if p[2] == None:
+        p[0] = '' + p[1]
+    else:
+        p[0] = ' '.join(p[1:])
 
 def p_vardecl3(p):
     '''
-    VARDECL3 : '[' INTCONSTANT ']' VARDECL3
+    VARDECL3 : LEFTBRACKET INTCONSTANT RIGHTBRACKET VARDECL3
             | empty
     '''
-    pass
+    if p[1] == None:
+        p[0] = p[1]
+    elif p[4] == None:
+        p[0] = p[1] + str(p[2]) + p[3]
+    else:
+        prox_vardecl3 = ''.join(p[4])
+        p[0] = p[1] + str(p[2]) + p[3] + prox_vardecl3
 
 def p_atribstat(p):
     '''
-    ATRIBSTAT : LVALUE '=' RIGHTATRIBSTAT
+    ATRIBSTAT : LVALUE ASSIGN RIGHTATRIBSTAT
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_rightatribstat(p):
     '''
@@ -119,70 +132,70 @@ def p_rightatribstat(p):
                     | ALLOCEXPRESSION 
                     | FUNCCALL
     '''
-    pass
+    p[0] = p[1]
 
 def p_funccall(p):
     '''
-    FUNCCALL : IDENT '(' PARAMLISTCALL ')'
+    FUNCCALL : IDENT LEFTPARENTHESES PARAMLISTCALL RIGHTPARENTHESES
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_paramlistcall(p):
     '''
     PARAMLISTCALL : IDENT PARAMLISTCALL2 
                     | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_paramlistcall2(p):
     '''
-    PARAMLISTCALL2 : ',' PARAMLISTCALL 
+    PARAMLISTCALL2 : COMMA PARAMLISTCALL 
                     | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_printstat(p):
     '''
     PRINTSTAT : PRINT EXPRESSION
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_readstat(p):
     '''
     READSTAT : READ LVALUE
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_returnstat(p):
     '''
     RETURNSTAT : RETURN
     '''
-    pass
+    p[0] = p[1]
 
 def p_ifstat(p):
     '''
-    IFSTAT : IF '(' EXPRESSION ')' STATEMENT ELSESTAT
+    IFSTAT : IF LEFTPARENTHESES EXPRESSION RIGHTPARENTHESES STATEMENT ELSESTAT
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_elsestat(p):
     '''
     ELSESTAT : ELSE STATEMENT 
                 | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_forstat(p):
     '''
-    FORSTAT : FOR '(' ATRIBSTAT ';' EXPRESSION ';' ATRIBSTAT ')' STATEMENT
+    FORSTAT : FOR LEFTPARENTHESES ATRIBSTAT SEMICOLON EXPRESSION SEMICOLON ATRIBSTAT RIGHTPARENTHESES STATEMENT
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_statelist(p):
     '''
     STATELIST : STATEMENT STATELIST2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 
 def p_statelist2(p):
@@ -190,14 +203,14 @@ def p_statelist2(p):
     STATELIST2 : STATELIST 
                 | empty
     '''
-    pass
+    p[0] = p[1]
 
 # 2 é '
 def p_allocexpression(p):
     '''
     ALLOCEXPRESSION : NEW ALLOCEXPRESSION2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_allocexpression2(p):
     '''
@@ -205,75 +218,75 @@ def p_allocexpression2(p):
                     | FLOAT ALLOCEXPRESSION_OPT 
                     | STRING ALLOCEXPRESSION_OPT
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 # 3 é 2
 def p_allocexpression_opt(p):
     '''
-    ALLOCEXPRESSION_OPT : '[' NUMEXPRESSION ']' ALLOCEXPRESSION3
+    ALLOCEXPRESSION_OPT : LEFTBRACKET NUMEXPRESSION RIGHTBRACKET ALLOCEXPRESSION3
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_allocexpression3(p):
     '''
     ALLOCEXPRESSION3 : ALLOCEXPRESSION_OPT 
                         | empty
     '''
-    pass
+    p[0] = p[1]
 
 def p_expression(p):
     '''
     EXPRESSION : NUMEXPRESSION EXPRESSION2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_expression2(p):
     '''
-    EXPRESSION2 : '<' NUMEXPRESSION 
-                | '>' NUMEXPRESSION 
+    EXPRESSION2 : LT NUMEXPRESSION 
+                | GT NUMEXPRESSION 
                 | LTE NUMEXPRESSION 
                 | GTE NUMEXPRESSION 
                 | EQUAL NUMEXPRESSION 
                 | INEQUAL NUMEXPRESSION
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_numexpression(p):
     '''
     NUMEXPRESSION : TERM NUMEXPRESSION2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_numexpression2(p):
     '''
-    NUMEXPRESSION2 : '+' TERM NUMEXPRESSION 
-                    | '-' TERM NUMEXPRESSION 
+    NUMEXPRESSION2 : PLUS TERM NUMEXPRESSION 
+                    | MINUS TERM NUMEXPRESSION 
                     | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_term(p):
     '''
     TERM : UNARYEXPR UNARYEXPR2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_unaryexpression2(p):
     '''
-    UNARYEXPR2 : '*' UNARYEXPR2 
-                | '/' UNARYEXPR2 
-                | '%' UNARYEXPR2 
+    UNARYEXPR2 : TIMES UNARYEXPR2 
+                | DIVIDE UNARYEXPR2 
+                | MOD UNARYEXPR2 
                 | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_unaryexpression(p):
     '''
-    UNARYEXPR : '+' FACTOR 
-                | '-' FACTOR 
+    UNARYEXPR : PLUS FACTOR 
+                | MINUS FACTOR 
                 | FACTOR
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_factor(p):
     '''
@@ -282,22 +295,22 @@ def p_factor(p):
             | STRINGCONSTANT 
             | NULL 
             | LVALUE 
-            | '(' NUMEXPRESSION ')'
+            | LEFTPARENTHESES NUMEXPRESSION RIGHTPARENTHESES
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_lvalue(p):
     '''
     LVALUE : IDENT LVALUE2
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 def p_lvalue2(p):
     '''
-    LVALUE2 : '[' NUMEXPRESSION ']' LVALUE2 
+    LVALUE2 : LEFTBRACKET NUMEXPRESSION RIGHTBRACKET LVALUE2 
             | empty
     '''
-    pass
+    p[0] = ' '.join(p[1:])
 
 # Erro
 def p_error(p):
@@ -313,6 +326,15 @@ input_file = open(sys.argv[1])
 data = input_file.read()
 input_file.close()
 
+# Set up a logging object
+logging.basicConfig(
+    level = logging.DEBUG,
+    filename = "parselog.txt",
+    filemode = "w",
+    format = "%(filename)10s:%(lineno)4d:%(message)s"
+)
+log = logging.getLogger()
+
 # Lexer
 lexer = Lexer()
 lexer.build()
@@ -320,5 +342,5 @@ lexer.input(data)
 
 # Parser
 parser = yacc.yacc(start='PROGRAM')
-result = parser.parse(data)
+result = parser.parse(data, debug=logging.getLogger())
 print(result)
