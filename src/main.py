@@ -10,7 +10,7 @@ from compiler.exceptions import (InvalidTokenError,
                                  SyntaticError,
                                  )
 from compiler.parser import parser
-from print_tables import get_tables, print_symbols_table, print_tokens_table
+from utils.print_tables import get_tables, print_symbols_table, print_tokens_table
 
 def main(filepath):
     with open(filepath) as f:
