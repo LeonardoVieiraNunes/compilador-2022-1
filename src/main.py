@@ -10,15 +10,17 @@ from compiler.exceptions import (InvalidTokenError,
                                  SyntaticError,
                                  )
 from compiler.parser import parser
+from print_tables import get_tables, print_symbols_table, print_tokens_table
 
 def main(filepath):
     with open(filepath) as f:
         source_code = f.read()
 
-    tokens = []
     lexer = Lexer()
     lexer.build()
     lexer.input(source_code)
+    tokens = []
+
     while True:
         token = lexer.token()
         if not token:
@@ -26,14 +28,18 @@ def main(filepath):
         else:
             tokens.append(token)
 
-    if Lexer.erro > 0:
+    # cria as tabelas de tokens e simbolos
+    tokens_table, symbols_table = get_tables(lexer, tokens)
+    
+    if lexer.erro > 0:
         print("Análise léxica finalizou com erros")
         print("Abortando o programa...")
         exit(1)
-    
-    print('Número de tokens: %s' % len(tokens))
 
-    print('\nExecutando parser...')
+    print_tokens_table(tokens_table)
+    print_symbols_table(symbols_table)
+
+    print('Executando parser...\n')
     success, fail_token = parser.parse(tokens=tokens)
 
     if not success:
