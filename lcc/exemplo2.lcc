@@ -10,51 +10,63 @@ def areaTriangulo(float BASE, float ALTURA)
 {
   float area;
   area = (BASE * ALTURA) / 2;
-  return area;
+  return;
 }
 
 def areaRetangulo(float BASE, float ALTURA)
 {
   float area;
-  area = BASE * ALTURA
-  return area;
+  area = BASE * ALTURA;
+  return;
 }
 
 def areaCirculo(float RAIO)
 {
   float area;
   area = RAIO * RAIO * 3.14;
-  return area;
+  return;
 }
 
 def areaTrapezio(float BASE_MAIOR, float BASE_MENOR, float ALTURA)
 {
   float area;
-  area = ((BASE_MAIOR + BASE_MENOR) * ALTURA) / 2
-  return area;
+  area = ((BASE_MAIOR + BASE_MENOR) * ALTURA) / 2;
+  return;
 }
 
 def areaLosango(float DIAMETRO_MAIOR, float DIAMETRO_MENOR)
 {
   float area;
   area = (DIAMETRO_MAIOR * DIAMETRO_MENOR) / 2;
-  return area;
+  return;
 }
 
 def fibonacci(int n)
 {
+  int value;
+  int n1;
+  int n2;
+  int fib1;
+  int fib2;
   if(n <= 1)
   {
-    return n;
+    value = n;
+    return;
   }
-  return fibonacci(n-1) + fibonacci(n-2)
+  n1 = n - 1;
+  n2 = n - 2;
+  fib1 = fibonacci(n1);
+  fib2 = fibonacci(n2);
+  value = fib1 + fib2;
+  return;
 }
 
 def runFib()
 {
-  int n = 9;
+  int n;
+  n = 9;
   int result;
-  result = fibonacci(n)
+  result = fibonacci(n);
   print result;
 }
 
@@ -68,37 +80,64 @@ def sayImFine()
   print "I'm fine";
 }
 
-int a = 1;
-int b = 2;
-int c = 3;
-int d = 4;
-int e = 5;
-int f = 6;
-int g = 7;
-int h = 8;
-int i = 9;
-int j = 10;
-int k = 11;
-int l = 12; 
-int m = 13; 
-int n = 14; 
-int o = 15; 
-int p = 16; 
-int q = 17; 
-int r = 18; 
-int s = 19; 
-int t = 20; 
-int u = 21; 
-int v = 22; 
-int w = 23; 
-int x = 24; 
-int y = 25; 
-int z = 26;
-
-
 def somaAbecedario()
+
 {
+  int a;
+  int b;
+  int c;
+  int d;
+  int e;
+  int f;
+  int g;
+  int h;
+  int i;
+  int j;
+  int k;
+  int l; 
+  int m; 
+  int n; 
+  int o; 
+  int p; 
+  int q; 
+  int r; 
+  int s; 
+  int t; 
+  int u; 
+  int v; 
+  int w; 
+  int x; 
+  int y; 
+  int z;
+
+  a = 1;
+  b = 2;
+  c = 3;
+  d = 4;
+  e = 5;
+  f = 6;
+  g = 7;
+  h = 8;
+  i = 9;
+  j = 10;
+  k = 11;
+  l = 12; 
+  m = 13; 
+  n = 14; 
+  o = 15; 
+  p = 16; 
+  q = 17; 
+  r = 18; 
+  s = 19; 
+  t = 20; 
+  u = 21; 
+  v = 22; 
+  w = 23; 
+  x = 24; 
+  y = 25; 
+  z = 26;
+
   int result;
-  result = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z
+  result = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t + u + v + w + x + y + z;
   print result;
 }
