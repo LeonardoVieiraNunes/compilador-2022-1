@@ -1,3 +1,23 @@
+def helloWorld()
+{
+  string message1;
+  message1 = "Hello";
+  string message2;
+  message2 = " ";
+  string message3;
+  message3 = "World";
+  print(message1);
+  print(message2);
+  print(message3);
+  int az;
+  az = 10;
+  int bz;
+  bz = 15;
+  int cz;
+  cz = az + bz;
+  print(cz);
+}
+
 {
   float x;
   float z;
@@ -82,21 +102,4 @@ def principal()
   D = 5;
   R = func1(C, D);
   return;
-}
-
-def helloWorld()
-{
-  string message1;
-  message1 = "Hello";
-  string message2;
-  message2 = " ";
-  string message3;
-  message3 = "World";
-  print(message1);
-  print(message2);
-  print(message3);
-  int az = 10;
-  int bz = 15;
-  int cz = az + bz;
-  print(cz);
 }
