@@ -1,0 +1,113 @@
+def linearSearch(int arr, int n, int x)
+{
+    int i;
+    int ret;
+    for (i = 0; i < n; i = i + 1) {
+        if (arr[i] == x) {
+            print "return i";
+            ret = i;
+            return;
+        }
+    }
+    print "return 0";
+    ret = 0;
+    return;
+}
+
+def binarySearch(int arr, int l, int r, int x)
+{
+    if (r >= l) {
+        int mid;
+        mid = l + (r - l) / 2;
+        int temp;
+ 
+        if (arr[mid] == x) {
+            print "return mid";
+            ret = mid;
+            return;
+        }
+ 
+        if (arr[mid] > x) {
+            print "return binarySearch(arr, l, mid - 1, x)";
+            temp = mid - 1;
+            ret = binarySearch(arr, l, temp, x);
+            return;
+        }
+
+        print "return binarySearch(arr, mid + 1, r, x);";
+        temp = mid +1;
+        ret = binarySearch(arr, temp, r, x);
+        return;
+    }
+    
+    print "return -1";
+    return;
+}
+
+def sizeof(int arr) {
+    print "return size of array";
+    return;
+}
+
+def execute_example_linearSearch() {
+    int arr[5];
+    arr[0] = 2;
+    arr[1] = 3;
+    arr[2] = 4;
+    arr[3] = 10;
+    arr[4] = 40;
+    int x;
+    x = 10;
+    int n;
+    int size_arr;
+    size_arr = sizeof(arr);
+    int size_arr0;
+    int arr0;
+    arr0 = arr[0];
+    size_arr0 = sizeof(arr0);
+    n = size_arr / size_arr0;
+
+    int result;
+    result  = linearSearch(arr, n, x);
+    if (result !=0) {
+        print "Element is present at index ";
+        print result;
+    }
+    else {
+        print "Element is not present in array";
+    }
+    return;
+}
+
+def execute_example_binarySearch() {
+    int arr[5];
+    arr[0] = 2;
+    arr[1] = 3;
+    arr[2] = 4;
+    arr[3] = 10;
+    arr[4] = 40;
+    int n;
+    int x;
+    int size_arr;
+    int size_arr0;
+    int arr0;
+    int result;
+    int n_minus1;
+    int zero;
+    x = 10;
+    size_arr = sizeof(arr);
+    arr0 = arr[0];
+    size_arr0 = sizeof(arr0);
+    n = size_arr / size_arr0;
+    n_minus1 = n-1;
+    zero = 0;
+    result  = binarySearch(arr, zero, n_minus1, x);
+    if (result == -1) {
+        print "Element is not present in array";
+    }
+    else {
+        print "Element is present at index ";
+        print result;
+    }
+    return;
+}
