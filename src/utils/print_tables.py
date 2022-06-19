@@ -1,18 +1,32 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico
+#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
 # Thainan Vieira Junckes [19100545]
 
-import ply.lex as lex
-import ply.yacc as yacc
-from token_generator import *
-from print_tables import *
-import json
-import sys
 from prettytable import PrettyTable
 
-def get_tables(lexer):
+def print_tokens_table(tokens_table):
+    """Print da tabela de tokens"""
+    print("========= TABELA DE TOKENS =========")
+    t = PrettyTable(['TOKEN', 'VALOR', 'LINHA', 'COLUNA'])
+    for tt in tokens_table:
+        t.add_row([tt['token'], tt['valor'],tt['linha'], tt['coluna']])
+    print(t)
+    print()
+
+def print_symbols_table(symbols_table):
+    """Print da tabela de simbolos"""
+    print("========= TABELA DE SÍMBOLOS =========")
+    t = PrettyTable(['NOME', 'TIPO', 'DECLARAÇÃO (linha)', 'REFERENCIADO (linha)'])
+    for key in symbols_table:
+        ss = symbols_table[key]
+        t.add_row([ss['nome'], ss['tipo'],ss['declaracao'], ss['referenciacao']])
+    print(t)
+    print()
+
+def get_tables(lexer, tokens):
+    """Obtem tabelas de tokens e simbolos"""
     #lista com os tipos dos identificadores
     types = ['def', 'string', 'int', 'float']
 
@@ -22,10 +36,11 @@ def get_tables(lexer):
 
     tok = ''
 
-    while True:
+    for i in range(len(tokens)):
         #pega as info do token atual
         last_tok = tok
-        tok = lexer.token()
+
+        tok = tokens[i]
 
         if not tok:
             break
@@ -52,22 +67,3 @@ def get_tables(lexer):
                     symbols_table[tok.value] = {'nome': tok.value, 'tipo': 'SEM_TIPO','declaracao': 'NAO_DECLARADO', 'referenciacao': [tok.lineno]}
 
     return tokens_table, symbols_table
-
-def main(data):
-    #cria o AL
-    lexer = Lexer()
-    lexer.build()
-    lexer.input(data)
-
-    #cria as tabelas de tokens e simbolos
-    tokens_table, symbols_table = get_tables(lexer)
-
-    #print das tabelas
-    print_tokens_table(tokens_table)
-    print_symbols_table(symbols_table)
-
-#passa um arquivo de entrada pra main()
-input_file = open(sys.argv[1])
-data = input_file.read()
-input_file.close()
-main(data)

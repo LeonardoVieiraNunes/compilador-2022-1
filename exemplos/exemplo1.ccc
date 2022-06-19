@@ -1,3 +1,24 @@
+def helloWorld()
+{
+  string message1;
+  message1 = "Hello";
+  string message2;
+  message2 = " ";
+  string message3;
+  message3 = "World";
+  print(message1);
+  print(message2);
+  print(message3);
+  int az;
+  az = 10;
+  int bz;
+  bz = 15;
+  int cz;
+  cz = az + bz;
+  print(cz);
+}
+
+def testandoPontoFlutuante()
 {
   float x;
   float z;
@@ -17,6 +38,7 @@
 }
 
 
+def testandoPrint()
 {
   int y;
   int j;
@@ -24,18 +46,23 @@
   y = new int[10];
   j = 0;
   for (i = 0; i < 20; i = i + 1)
-    if (i % 2 == 0){
+  {
+    if(i % 2 == 0)
+    {
       y[j] = i + 1;
       j = j + 1;
     }
-    else
+    else {
       print 0;
+    }
+  }
 
   for (i = 0; i < 10; i = i + 1)
+  {
     print y[i];
+  }
 
   return;
-}
 }
 
 def acordarOuDormir()
@@ -54,7 +81,7 @@ def acordarOuDormir()
 
 def testandoFor1()
 {
-  for(int i = 0; i < 10; i = i + 1)
+  for(i = 0; i < 10; i = i + 1)
   {
     print("próximo número é:");
     print i;
@@ -64,11 +91,11 @@ def testandoFor1()
 def testandoFor2()
 {
   
-  for(int i = 0; i < 10; i = i + 1)
+  for(i = 0; i < 10; i = i + 1)
   {
-    for(int i = 0; i < 10; i = i + 1)
+    for(i = 0; i < 10; i = i + 1)
     {
-      
+      print i;
     }
   }
 }
@@ -82,21 +109,4 @@ def principal()
   D = 5;
   R = func1(C, D);
   return;
-}
-
-def helloWorld()
-{
-  string message1;
-  message1 = "Hello";
-  string message2;
-  message2 = " ";
-  string message3;
-  message3 = "World";
-  print(message1);
-  print(message2);
-  print(message3);
-  int az = 10;
-  int bz = 15;
-  int cz = az + bz;
-  print(cz);
 }

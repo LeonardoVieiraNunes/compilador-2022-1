@@ -1,6 +1,7 @@
 def media()
 {
-  int resultado = 0;
+  int resultado;
+  resultado = 0;
   int SM[20];
   SM[0] = 5;
   SM[1] = 5;
@@ -23,7 +24,7 @@ def media()
   SM[18] = 5;
   SM[19] = 5;
 
-  for(int i = 0; i < 19; i = i + 1)
+  for(i = 0; i < 19; i = i + 1)
   {
     resultado = resultado + SM[i];
   }
@@ -43,7 +44,6 @@ def myComplexPrint(string s1, string s2, string s3)
   print(v1);
   print(v2);
   print(v3);
-  media();
 }
 
 def myCase(int variable)

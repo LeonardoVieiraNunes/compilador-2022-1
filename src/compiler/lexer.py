@@ -1,4 +1,4 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico
+#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
@@ -6,9 +6,11 @@
 
 import ply.lex as lex
 import ply.yacc as yacc
+from compiler.exceptions import InvalidTokenError
 
 
 class Lexer(object):
+    erro = 0
     # tokens list
     tokens = ['PLUS',
               'MINUS',
@@ -82,7 +84,7 @@ class Lexer(object):
                 'if': 'IF',
                 'else': 'ELSE',
                 'for': 'FOR',
-                'null': 'NULL'
+                'null': 'NULL',
                 }
 
     tokens = tokens + list(reserved.values())
@@ -125,6 +127,7 @@ class Lexer(object):
         print("Linha: %s" % t.lexer.lineno)
         print("Coluna: %s" % column)
         print("-----------------------------------------")
+        Lexer.erro += 1
         t.lexer.skip(1)
 
     # pega a coluna do token

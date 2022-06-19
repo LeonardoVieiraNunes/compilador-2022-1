@@ -4,7 +4,7 @@ setup: requirements.txt
 	pip install -r requirements.txt
 
 run:
-	python3 main.py $(FILE)
+	python3 src/main.py $(FILE)
 
 clean:
 	rm -rf __pycache__
