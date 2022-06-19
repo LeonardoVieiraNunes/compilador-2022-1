@@ -1,4 +1,4 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico
+#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
@@ -16,6 +16,7 @@ def main(filepath):
     with open(filepath) as f:
         source_code = f.read()
 
+    #cria o AL
     lexer = Lexer()
     lexer.build()
     lexer.input(source_code)
@@ -30,15 +31,17 @@ def main(filepath):
 
     # cria as tabelas de tokens e simbolos
     tokens_table, symbols_table = get_tables(lexer, tokens)
-    
+
     if lexer.erro > 0:
         print("Análise léxica finalizou com erros")
         print("Abortando o programa...")
         exit(1)
 
+    #print das tabelas
     print_tokens_table(tokens_table)
     print_symbols_table(symbols_table)
 
+    #executa o AS
     print('Executando parser...\n')
     success, fail_token = parser.parse(tokens=tokens)
 

@@ -1,4 +1,4 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico
+#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
