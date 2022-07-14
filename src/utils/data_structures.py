@@ -7,6 +7,12 @@
 import uuid
 from dataclasses import dataclass
 from typing import List, Set, Dict, Optional, Union
+from compiler.exceptions import (InvalidTokenError,
+                                 SyntaticError,
+                                 BreakWithoutLoopError,
+                                 VariableAlreadyDeclaredInScopeError,
+                                 InvalidTypeOperationError,
+                                 VariableNotDeclared)
 
 @dataclass
 class Production:

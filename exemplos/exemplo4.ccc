@@ -20,26 +20,24 @@ def binarySearch(int arr, int l, int r, int x)
         int mid;
         mid = l + (r - l) / 2;
         int temp;
- 
+        int ret;
         if (arr[mid] == x) {
             print "return mid";
             ret = mid;
             return;
         }
- 
+
         if (arr[mid] > x) {
             print "return binarySearch(arr, l, mid - 1, x)";
             temp = mid - 1;
-            ret = binarySearch(arr, l, temp, x);
             return;
         }
 
         print "return binarySearch(arr, mid + 1, r, x);";
         temp = mid +1;
-        ret = binarySearch(arr, temp, r, x);
         return;
     }
-    
+
     print "return -1";
     return;
 }

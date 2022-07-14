@@ -26,6 +26,9 @@ def testandoPontoFlutuante()
   int max;
   x = 0;
   max = 10000;
+  string teste;
+  int t;
+  teste = "texto";
   for (i = 1; i <= max; i = i + 1){
     print x;
     x = x + 0.001;
@@ -81,6 +84,7 @@ def acordarOuDormir()
 
 def testandoFor1()
 {
+  int i;
   for(i = 0; i < 10; i = i + 1)
   {
     print("próximo número é:");
@@ -90,7 +94,7 @@ def testandoFor1()
 
 def testandoFor2()
 {
-  
+  int i;
   for(i = 0; i < 10; i = i + 1)
   {
     for(i = 0; i < 10; i = i + 1)
@@ -107,6 +111,6 @@ def principal()
   int R;
   C = 4;
   D = 5;
-  R = func1(C, D);
+  R = 6;
   return;
 }
