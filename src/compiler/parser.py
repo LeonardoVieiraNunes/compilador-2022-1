@@ -64,6 +64,7 @@ class Parser:
     def __init__(self):
         curr_file_folder = os.path.dirname(__file__)
         grammar_path = os.path.join(curr_file_folder,
+                                    '..', '..', 'grammar',
                                     'ConvCC-2022-1.csf')
 
         cfg_proc = CfgProcessor()
