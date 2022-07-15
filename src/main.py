@@ -72,7 +72,8 @@ def main(filepath):
         print("Todo break está no escopo de um for")
 
     except BreakWithoutLoopError as exp:
-        line = linecache.getline(filepath, int(str(exp)))
+        lineno = str(exp)
+        line = linecache.getline(filepath, int(lineno))
         print("ERRO SEMÂNTICO!")
         print("Uso inválido do break na linha %s:\n\t%s" % (exp, line.strip()))
 
