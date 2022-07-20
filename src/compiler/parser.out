@@ -1,11 +1,5 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    DIGITO
-    DOT
-    LETRA
-
 Grammar
 
 Rule 0     S' -> PROGRAM
@@ -104,9 +98,7 @@ ASSIGN               : 30
 BREAK                : 25
 COMMA                : 12 45
 DEF                  : 9
-DIGITO               : 
 DIVIDE               : 76
-DOT                  : 
 ELSE                 : 51
 EQUAL                : 67
 FLOAT                : 15
@@ -122,7 +114,6 @@ INTCONSTANT          : 28 35 82
 LEFTBRACE            : 9 24 50 51 53
 LEFTBRACKET          : 28 57 58
 LEFTPARENTHESES      : 9 39 42 50 53 87
-LETRA                : 
 LT                   : 63
 LTE                  : 65
 MINUS                : 33 73

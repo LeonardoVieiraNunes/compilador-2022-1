@@ -1,4 +1,9 @@
-"""Semantic analyser"""
+#INE5426 - Construção de Compiladores - Analisador Léxico, Sintático, Semântico e GCI
+# Artur Ribeiro Alfa [17103919]
+# Augusto Vieira Coelho Rodrigues [19100517]
+# Leonardo Vieira Nunes [19102923]
+# Thainan Vieira Junckes [19100545]
+
 from typing import List, Optional, Dict, Tuple
 from dataclasses import dataclass
 
@@ -10,7 +15,6 @@ from compiler.exceptions import (BreakWithoutLoopError,
                                  InvalidTypeOperationError,
                                  VariableNotDeclared)
 
-# Necessary for yacc instatiation
 lexer = Lexer()
 lexer.build()
 tokens = lexer.tokens
@@ -19,7 +23,6 @@ tokens = lexer.tokens
 scope_stack = ScopeStack()
 
 num_expressions: List[Tuple[Node, int]] = []
-
 
 def get_var_type(ident, lineno):
     scope = scope_stack.seek()
@@ -212,16 +215,13 @@ def p_statement_for(p: yacc.YaccProduction):
 
 def p_statement_statelist(p: yacc.YaccProduction):
     """STATEMENT : new_scope LEFTBRACE STATELIST RIGHTBRACE """
-    # Return to previous scope
     scope_stack.pop()
 
 
 def p_statement_break(p: yacc.YaccProduction):
     """STATEMENT : BREAK SEMICOLON"""
-    # If is not inside loop scope, consider semantic failure
     current_scope = scope_stack.seek()
 
-    # Go into upper scopes trying to find a for loop
     while True:
         if current_scope.is_loop:
             break
@@ -277,24 +277,12 @@ def p_funccall_or_exp_plus(p: yacc.YaccProduction):
         right_node.value *= -1
 
     if p[3]:
-        result_type = check_type(p[3]['node'],
-                                 right_node,
-                                 p[3]['operation'],
-                                 p.lineno(1))
-        right_node = Node(p[3]['node'],
-                          right_node,
-                          p[3]['operation'],
-                          result_type)
+        result_type = check_type(p[3]['node'],right_node,p[3]['operation'],p.lineno(1))
+        right_node = Node(p[3]['node'],right_node,p[3]['operation'],result_type)
 
     if p[4]:
-        result_type = check_type(p[4]['node'],
-                                 right_node,
-                                 p[4]['operation'],
-                                 p.lineno(1))
-        right_node = Node(p[4]['node'],
-                          right_node,
-                          p[4]['operation'],
-                          result_type)
+        result_type = check_type(p[4]['node'],right_node,p[4]['operation'],p.lineno(1))
+        right_node = Node(p[4]['node'],right_node,p[4]['operation'],result_type)
 
     num_expressions.append(right_node)
 
@@ -304,17 +292,11 @@ def p_funccal_or_exp_int_const(p: yacc.YaccProduction):
     node = Node(None, None, p[1], 'int')
 
     if p[2]:
-        result_type = check_type(node,
-                                 p[2]['node'],
-                                 p[2]['operation'],
-                                 p.lineno(2))
+        result_type = check_type(node,p[2]['node'],p[2]['operation'],p.lineno(2))
         node = Node(node, p[2]['node'], p[2]['operation'], result_type)
 
     if p[3]:
-        result_type = check_type(node,
-                                 p[3]['node'],
-                                 p[3]['operation'],
-                                 p.lineno(2))
+        result_type = check_type(node,p[3]['node'],p[3]['operation'],p.lineno(2))
         node = Node(node, p[3]['node'], p[3]['operation'], result_type)
 
     p[0] = {
@@ -329,17 +311,11 @@ def p_funccal_or_exp_float_const(p: yacc.YaccProduction):
     node = Node(None, None, p[1], 'float')
 
     if p[2]:
-        result_type = check_type(node,
-                                 p[2]['node'],
-                                 p[2]['operation'],
-                                 p.lineno(2))
+        result_type = check_type(node,p[2]['node'],p[2]['operation'],p.lineno(2))
         node = Node(node, p[2]['node'], p[2]['operation'], result_type)
 
     if p[3]:
-        result_type = check_type(node,
-                                 p[3]['node'],
-                                 p[3]['operation'],
-                                 p.lineno(2))
+        result_type = check_type(node,p[3]['node'],p[3]['operation'],p.lineno(2))
         node = Node(node, p[3]['node'], p[3]['operation'], result_type)
 
     p[0] = {
@@ -354,17 +330,11 @@ def p_funccal_or_exp_string_const(p: yacc.YaccProduction):
     node = Node(None, None, p[1], 'string')
 
     if p[2]:
-        result_type = check_type(node,
-                                 p[2]['node'],
-                                 p[2]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(node,p[2]['node'],p[2]['operation'],p.lineno(1))
         node = Node(node, p[2]['node'], p[2]['operation'], result_type)
 
     if p[3]:
-        result_type = check_type(node,
-                                 p[3]['node'],
-                                 p[3]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(node,p[3]['node'],p[3]['operation'],p.lineno(1))
         node = Node(node, p[3]['node'], p[3]['operation'], result_type)
 
     p[0] = {
@@ -384,17 +354,11 @@ def p_funccall_or_exp_parentesis(p: yacc.YaccProduction):
     node = p[2]['node']
 
     if p[4]:
-        result_type = check_type(node,
-                                 p[4]['node'],
-                                 p[4]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(node,p[4]['node'],p[4]['operation'],p.lineno(1))
         node = Node(node, p[4]['node'], p[4]['operation'], result_type)
 
     if p[5]:
-        result_type = check_type(node,
-                                 p[5]['node'],
-                                 p[5]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(node,p[5]['node'],p[5]['operation'],p.lineno(1))
         node = Node(node, p[5]['node'], p[5]['operation'], result_type)
 
     p[0] = {
@@ -413,10 +377,7 @@ def p_funccall_or_exp_ident(p: yacc.YaccProduction):
 
     if p[2]:
         node.value += p[2]['vec_access']
-        result_type = check_type(node,
-                                 p[2]['node'],
-                                 p[2]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(node,p[2]['node'],p[2]['operation'],p.lineno(1))
         node = Node(node, p[2]['node'], p[2]['operation'], result_type)
 
         num_expressions.append((node, p.lineno(1)))
@@ -437,10 +398,7 @@ def p_follow_ident_alloc(p: yacc.YaccProduction):
             operation = p[3]['operation']
 
         else:
-            result_type = check_type(node,
-                                     p[3]['node'],
-                                     p[3]['operation'],
-                                     p.lineno(0))
+            result_type = check_type(node,p[3]['node'],p[3]['operation'],p.lineno(0))
             node = Node(node, p[3]['node'], p[3]['operation'], result_type)
 
     p[0] = {
@@ -584,15 +542,9 @@ def p_numexp(p: yacc.YaccProduction):
         p[0] = p[1]
 
     else:
-        result_type = check_type(p[1]['node'],
-                                 p[2]['node'],
-                                 p[2]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(p[1]['node'],p[2]['node'],p[2]['operation'],p.lineno(1))
         p[0] = {
-            'node': Node(p[1]['node'],
-                         p[2]['node'],
-                         p[2]['operation'],
-                         result_type)
+            'node': Node(p[1]['node'],p[2]['node'],p[2]['operation'],result_type)
         }
 
 
@@ -606,13 +558,9 @@ def p_rec_plus_minus(p: yacc.YaccProduction):
 
     elif p[3]:
         # Case there's another recursive operation being made
-        result_type = check_type(p[2]['node'],
-                                 p[3]['node'],
-                                 p[3]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(p[2]['node'],p[3]['node'],p[3]['operation'],p.lineno(1))
         p[0] = {
-            'node': Node(p[2]['node'], p[3]['node'],
-                         p[3]['operation'], result_type),
+            'node': Node(p[2]['node'], p[3]['node'],p[3]['operation'], result_type),
             'operation': p[1]['operation']
         }
     else:
@@ -633,10 +581,7 @@ def p_term_unary_exp(p: yacc.YaccProduction):
     """TERM : UNARYEXPR REC_UNARYEXPR"""
     if p[2]:
         # If there's another operation being made
-        result_type = check_type(p[1]['node'],
-                                 p[2]['node'],
-                                 p[2]['operation'],
-                                 p.lineno(1))
+        result_type = check_type(p[1]['node'],p[2]['node'],p[2]['operation'],p.lineno(1))
         p[0] = {
             'node': Node(p[1]['node'], p[2]['node'], p[2]['operation'], result_type),
             'operation': p[2]['operation']

@@ -1,4 +1,9 @@
-"""Semantic analyser"""
+#INE5426 - Construção de Compiladores - Analisador Léxico, Sintático, Semântico e GCI
+# Artur Ribeiro Alfa [17103919]
+# Augusto Vieira Coelho Rodrigues [19100517]
+# Leonardo Vieira Nunes [19102923]
+# Thainan Vieira Junckes [19100545]
+
 from typing import List, Optional, Dict
 from dataclasses import dataclass
 
@@ -7,7 +12,6 @@ from ply import yacc
 from compiler.lexer import Lexer
 from utils.data_structures import Scope, ScopeStack, TableEntry
 
-# Necessary for yacc instatiation
 lexer = Lexer()
 lexer.build()
 tokens = lexer.tokens
@@ -63,6 +67,8 @@ def new_label() -> str:
 
     return lbl
 
+def p_error(p):
+    print('ERROR!')
 
 def p_empty(p: yacc.YaccProduction):
     """empty :"""
@@ -337,8 +343,6 @@ def p_funccall_or_exp_ident(p: yacc.YaccProduction):
 
 def p_follow_ident_alloc(p: yacc.YaccProduction):
     """FOLLOW_IDENT : OPT_ALLOC_NUMEXP REC_UNARYEXPR REC_PLUS_MINUS_TERM OPT_REL_OP_NUM_EXPR"""
-    # Assumes that only one of theese operations will succeed
-    # could be wrong, but letting the expression be mounted here loog wrong too
     index_access = ''
 
     if p[1]['code']:
@@ -356,7 +360,6 @@ def p_follow_ident_alloc(p: yacc.YaccProduction):
             break
 
     else:
-        # If the loop completes without finding anything...
         p[0] = {
             'code': '',
             'funcall': False

@@ -1,4 +1,4 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
+#INE5426 - Construção de Compiladores - Analisador Léxico, Sintático, Semântico e GCI
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
@@ -77,7 +77,6 @@ class Parser:
         self.__empty_symbol = '&'
 
     def parse(self, tokens: List[LexToken]) -> Tuple[bool, Optional[LexToken]]:
-        """Validate symbols and update symbols_table"""
         stack = deque()
 
         stack.append('$')
@@ -86,31 +85,24 @@ class Parser:
         for token in tokens + [STACK_BOT_TOKEN]:
             token_terminal = TYPE_TO_TERMINAL_MAP[token.type]
             while True:
-                # Terminal on top of stack and on code pointer
-                # are equals, pop the stack and move the pointer
                 if token_terminal == stack[-1]:
                     stack.pop()
                     break
 
-                # Get production to be applied
                 try:
                     prod = self.mat.get_prod(stack[-1], token_terminal)
                 except KeyError:
                     return (False, token)
 
-                # Reconize syntatic error
                 if prod is None:
                     return (False, token)
 
-                # Remove the top of the stack
                 stack.pop()
 
-                # Stack the symbols from corresponding production
                 for symbol in reversed(prod.body):
                     if symbol != self.__empty_symbol:
                         stack.append(symbol)
 
-        # If something other than the stack bottom is in the stack
         if len(stack) > 1:
             return (False, token)
 
