@@ -1,0 +1,232 @@
+goto LABEL0
+helloWorld:
+string message1
+t1 = "Hello"
+message1 = t1
+string message2
+t3 = " "
+message2 = t3
+string message3
+t5 = "World"
+message3 = t5
+t6 = message1
+t7 = t6
+print t7
+t8 = message2
+t9 = t8
+print t9
+t10 = message3
+t11 = t10
+print t11
+int az
+t13 = 10
+az = t13
+int bz
+t15 = 15
+bz = t15
+int cz
+t17 = bz
+t18 = az + t17
+cz = t18
+t19 = cz
+t20 = t19
+print t20
+
+LABEL0:
+goto LABEL4
+testandoPontoFlutuante:
+float x
+float z
+int i
+int max
+t22 = 0
+x = t22
+t24 = 10000
+max = t24
+string teste
+int t
+t26 = "texto"
+teste = t26
+t28 = 1
+i = t28
+
+LABEL3:
+t30 = max
+t29 = i
+t31 = t29 <= t30
+if False t31 goto LABEL1
+t35 = x
+t36 = t35
+print t36
+t38 = 0.001
+t39 = x + t38
+x = t39
+z = x
+t42 = x
+t41 = z
+t43 = t41 != t42
+if False t43 goto LABEL2
+t44 = "Erro numérico na atribuição de números na notação ponto flutuante!"
+t45 = t44
+print t45
+goto LABEL1
+LABEL2:
+t33 = 1
+t34 = i + t33
+i = t34
+goto LABEL3
+LABEL1:
+
+LABEL4:
+goto LABEL11
+testandoPrint:
+int y
+int j
+int i
+t48 = new int
+y = t48
+t50 = 0
+j = t50
+t52 = 0
+i = t52
+
+LABEL8:
+t54 = 20
+t53 = i
+t55 = t53 < t54
+if False t55 goto LABEL5
+t62 = 0
+t59 = i
+t61 = t59 % t60
+t63 = t61 == t62
+if False t63 goto LABEL6
+t66 = 1
+t67 = i + t66
+t64 = j
+y[t64] = t67
+t69 = 1
+t70 = j + t69
+j = t70
+goto LABEL7
+LABEL6:
+t71 = 0
+t72 = t71
+print t72
+LABEL7:
+t57 = 1
+t58 = i + t57
+i = t58
+goto LABEL8
+LABEL5:
+t74 = 0
+i = t74
+
+LABEL10:
+t76 = 10
+t75 = i
+t77 = t75 < t76
+if False t77 goto LABEL9
+t82 = y[t81]
+t83 = t82
+print t83
+t79 = 1
+t80 = i + t79
+i = t80
+goto LABEL10
+LABEL9:
+return
+
+LABEL11:
+goto LABEL14
+acordarOuDormir:
+string resposta
+t84 = "Está chovendo?"
+t85 = t84
+print t85
+read respostat88 = "sim"
+t87 = resposta
+t89 = t87 == t88
+if False t89 goto LABEL12
+t90 = "Zzzz"
+t91 = t90
+print t91
+goto LABEL13
+LABEL12:
+t92 = "Booora!"
+t93 = t92
+print t93
+LABEL13:
+
+LABEL14:
+goto LABEL17
+testandoFor1:
+int i
+t95 = 0
+i = t95
+
+LABEL16:
+t97 = 10
+t96 = i
+t98 = t96 < t97
+if False t98 goto LABEL15
+t102 = "próximo número é:"
+t103 = t102
+print t103
+t104 = i
+t105 = t104
+print t105
+t100 = 1
+t101 = i + t100
+i = t101
+goto LABEL16
+LABEL15:
+
+LABEL17:
+goto LABEL22
+testandoFor2:
+int i
+t107 = 0
+i = t107
+
+LABEL21:
+t109 = 10
+t108 = i
+t110 = t108 < t109
+if False t110 goto LABEL19
+t115 = 0
+i = t115
+
+LABEL20:
+t117 = 10
+t116 = i
+t118 = t116 < t117
+if False t118 goto LABEL19
+t122 = i
+t123 = t122
+print t123
+t120 = 1
+t121 = i + t120
+i = t121
+goto LABEL20
+LABEL19:
+t112 = 1
+t113 = i + t112
+i = t113
+goto LABEL21
+LABEL19:
+
+LABEL22:
+goto LABEL23
+principal:
+int C
+int D
+int R
+t125 = 4
+C = t125
+t127 = 5
+D = t127
+t129 = 6
+R = t129
+return
+
+LABEL23:

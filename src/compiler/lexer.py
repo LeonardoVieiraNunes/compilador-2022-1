@@ -1,4 +1,4 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
+#INE5426 - Construção de Compiladores - Analisador Léxico, Sintático, Semântico e GCI
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
@@ -24,7 +24,6 @@ class Lexer(object):
               'GTE',
               'EQUAL',
               'INEQUAL',
-              'DOT',
               'COMMA',
               'SEMICOLON',
               'RIGHTPARENTHESES',
@@ -33,8 +32,6 @@ class Lexer(object):
               'LEFTBRACKET',
               'RIGHTBRACE',
               'LEFTBRACE',
-              'DIGITO',
-              'LETRA',
               'INTCONSTANT',
               'STRINGCONSTANT',
               'FLOATCONSTANT',
@@ -54,7 +51,6 @@ class Lexer(object):
     t_GTE = r'>='
     t_EQUAL = r'=='
     t_INEQUAL = r'!='
-    t_DOT = r'\.'
     t_COMMA = r','
     t_SEMICOLON = r';'
     t_RIGHTPARENTHESES = r'\)'
@@ -63,12 +59,9 @@ class Lexer(object):
     t_LEFTBRACKET = r'\['
     t_RIGHTBRACE = r'}'
     t_LEFTBRACE = r'{'
-    t_DIGITO = r'([0-9])'
-    t_LETRA = r'([A-Za-z])'
 
     # Ignores spaces
     t_ignore = ' \t'
-
 
     #reserved words
     reserved = {

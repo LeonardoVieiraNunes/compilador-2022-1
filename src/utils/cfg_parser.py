@@ -1,4 +1,4 @@
-#INE5426 - Construção de Compiladores - Analisador Léxico e Sintático
+#INE5426 - Construção de Compiladores - Analisador Léxico, Sintático, Semântico e GCI
 # Artur Ribeiro Alfa [17103919]
 # Augusto Vieira Coelho Rodrigues [19100517]
 # Leonardo Vieira Nunes [19102923]
@@ -8,7 +8,7 @@ from typing import Set, Union, List
 
 from utils.data_structures import Cfg, Production
 
-
+# classe do parser da gramatica
 class CfgParser():
     def __init__(self):
         self.__current_symbol: Union[None, str] = None
@@ -34,8 +34,8 @@ class CfgParser():
                    non_terminals=self.__non_terminals,
                    productions=self.__productions)
 
+    # parser de uma linha
     def __parse_line(self, line: str) -> None:
-        """Parse a single line"""
         if self.__is_first_production_line(line):
             head, body = self.__split_head_body(line)
             head = head.strip()

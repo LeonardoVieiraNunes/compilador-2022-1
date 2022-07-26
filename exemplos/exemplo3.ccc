@@ -23,12 +23,12 @@ def media()
   SM[17] = 5;
   SM[18] = 5;
   SM[19] = 5;
-
+  int i;
   for(i = 0; i < 19; i = i + 1)
   {
     resultado = resultado + SM[i];
   }
-  
+
   print(resultado);
 }
 

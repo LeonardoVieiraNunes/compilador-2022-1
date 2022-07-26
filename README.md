@@ -1,4 +1,4 @@
-# INE5426 - Construção de Compiladores - Analisador Léxico
+# INE5426 - Construção de Compiladores - Analisador Léxico, Sintático, Semântico e GCI
 
 ## Integrantes
 

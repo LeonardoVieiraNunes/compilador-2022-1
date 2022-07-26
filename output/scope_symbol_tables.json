@@ -1,0 +1,263 @@
+{
+  "table": [
+    {
+      "identifier_label": "helloWorld",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 1
+    },
+    {
+      "identifier_label": "testandoPontoFlutuante",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 21
+    },
+    {
+      "identifier_label": "testandoPrint",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 44
+    },
+    {
+      "identifier_label": "acordarOuDormir",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 71
+    },
+    {
+      "identifier_label": "testandoFor1",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 85
+    },
+    {
+      "identifier_label": "testandoFor2",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 95
+    },
+    {
+      "identifier_label": "principal",
+      "datatype": "function",
+      "dimensions": [],
+      "line": 107
+    }
+  ],
+  "inner_scopes": [
+    {
+      "table": [
+        {
+          "identifier_label": "message1",
+          "datatype": "string",
+          "dimensions": [],
+          "line": 3
+        },
+        {
+          "identifier_label": "message2",
+          "datatype": "string",
+          "dimensions": [],
+          "line": 5
+        },
+        {
+          "identifier_label": "message3",
+          "datatype": "string",
+          "dimensions": [],
+          "line": 7
+        },
+        {
+          "identifier_label": "az",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 12
+        },
+        {
+          "identifier_label": "bz",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 14
+        },
+        {
+          "identifier_label": "cz",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 16
+        }
+      ],
+      "inner_scopes": []
+    },
+    {
+      "table": [
+        {
+          "identifier_label": "x",
+          "datatype": "float",
+          "dimensions": [],
+          "line": 23
+        },
+        {
+          "identifier_label": "z",
+          "datatype": "float",
+          "dimensions": [],
+          "line": 24
+        },
+        {
+          "identifier_label": "i",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 25
+        },
+        {
+          "identifier_label": "max",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 26
+        },
+        {
+          "identifier_label": "teste",
+          "datatype": "string",
+          "dimensions": [],
+          "line": 29
+        },
+        {
+          "identifier_label": "t",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 30
+        }
+      ],
+      "inner_scopes": [
+        {
+          "table": [],
+          "inner_scopes": [
+            {
+              "table": [],
+              "inner_scopes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "table": [
+        {
+          "identifier_label": "y",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 46
+        },
+        {
+          "identifier_label": "j",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 47
+        },
+        {
+          "identifier_label": "i",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 48
+        }
+      ],
+      "inner_scopes": [
+        {
+          "table": [],
+          "inner_scopes": [
+            {
+              "table": [],
+              "inner_scopes": [
+                {
+                  "table": [],
+                  "inner_scopes": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "table": [],
+          "inner_scopes": []
+        }
+      ]
+    },
+    {
+      "table": [
+        {
+          "identifier_label": "resposta",
+          "datatype": "string",
+          "dimensions": [],
+          "line": 73
+        }
+      ],
+      "inner_scopes": [
+        {
+          "table": [],
+          "inner_scopes": [
+            {
+              "table": [],
+              "inner_scopes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "table": [
+        {
+          "identifier_label": "i",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 87
+        }
+      ],
+      "inner_scopes": [
+        {
+          "table": [],
+          "inner_scopes": []
+        }
+      ]
+    },
+    {
+      "table": [
+        {
+          "identifier_label": "i",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 97
+        }
+      ],
+      "inner_scopes": [
+        {
+          "table": [],
+          "inner_scopes": [
+            {
+              "table": [],
+              "inner_scopes": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "table": [
+        {
+          "identifier_label": "C",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 109
+        },
+        {
+          "identifier_label": "D",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 110
+        },
+        {
+          "identifier_label": "R",
+          "datatype": "int",
+          "dimensions": [],
+          "line": 111
+        }
+      ],
+      "inner_scopes": []
+    }
+  ]
+}
