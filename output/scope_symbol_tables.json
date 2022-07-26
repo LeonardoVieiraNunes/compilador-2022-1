@@ -3,43 +3,43 @@
     {
       "identifier_label": "helloWorld",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 1
     },
     {
       "identifier_label": "testandoPontoFlutuante",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 21
     },
     {
       "identifier_label": "testandoPrint",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 44
     },
     {
       "identifier_label": "acordarOuDormir",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 71
     },
     {
       "identifier_label": "testandoFor1",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 85
     },
     {
       "identifier_label": "testandoFor2",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 95
     },
     {
       "identifier_label": "principal",
       "datatype": "function",
-      "dimesions": [],
+      "dimensions": [],
       "line": 107
     }
   ],
@@ -49,37 +49,37 @@
         {
           "identifier_label": "message1",
           "datatype": "string",
-          "dimesions": [],
+          "dimensions": [],
           "line": 3
         },
         {
           "identifier_label": "message2",
           "datatype": "string",
-          "dimesions": [],
+          "dimensions": [],
           "line": 5
         },
         {
           "identifier_label": "message3",
           "datatype": "string",
-          "dimesions": [],
+          "dimensions": [],
           "line": 7
         },
         {
           "identifier_label": "az",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 12
         },
         {
           "identifier_label": "bz",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 14
         },
         {
           "identifier_label": "cz",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 16
         }
       ],
@@ -90,37 +90,37 @@
         {
           "identifier_label": "x",
           "datatype": "float",
-          "dimesions": [],
+          "dimensions": [],
           "line": 23
         },
         {
           "identifier_label": "z",
           "datatype": "float",
-          "dimesions": [],
+          "dimensions": [],
           "line": 24
         },
         {
           "identifier_label": "i",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 25
         },
         {
           "identifier_label": "max",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 26
         },
         {
           "identifier_label": "teste",
           "datatype": "string",
-          "dimesions": [],
+          "dimensions": [],
           "line": 29
         },
         {
           "identifier_label": "t",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 30
         }
       ],
@@ -141,19 +141,19 @@
         {
           "identifier_label": "y",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 46
         },
         {
           "identifier_label": "j",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 47
         },
         {
           "identifier_label": "i",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 48
         }
       ],
@@ -183,7 +183,7 @@
         {
           "identifier_label": "resposta",
           "datatype": "string",
-          "dimesions": [],
+          "dimensions": [],
           "line": 73
         }
       ],
@@ -204,7 +204,7 @@
         {
           "identifier_label": "i",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 87
         }
       ],
@@ -220,7 +220,7 @@
         {
           "identifier_label": "i",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 97
         }
       ],
@@ -241,19 +241,19 @@
         {
           "identifier_label": "C",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 109
         },
         {
           "identifier_label": "D",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 110
         },
         {
           "identifier_label": "R",
           "datatype": "int",
-          "dimesions": [],
+          "dimensions": [],
           "line": 111
         }
       ],

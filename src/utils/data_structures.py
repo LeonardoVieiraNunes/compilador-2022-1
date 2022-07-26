@@ -98,7 +98,7 @@ class TableEntry:
     # tabela de dados para a tabela de simbolos
     identifier_label: str
     datatype: str
-    dimesions: List[int]
+    dimensions: List[int]
     line: int
 
     # retorna em formato json
@@ -106,7 +106,7 @@ class TableEntry:
         return {
             'identifier_label': self.identifier_label,
             'datatype': self.datatype,
-            'dimesions': self.dimesions,
+            'dimensions': self.dimensions,
             'line': self.line
         }
 

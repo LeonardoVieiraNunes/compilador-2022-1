@@ -1,4 +1,4 @@
-new_table_entry(identifier_label: str, datatype: str, dimesions: List[int], line: int)
+new_table_entry(identifier_label: str, datatype: str, dimensions: List[int], line: int)
 concat(l1: List[Any], l2: List[Any])
 
 production:
